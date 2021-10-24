@@ -1,0 +1,25 @@
+.Footer {
+  position: absolute;
+  width: 526px;
+  height: 50px;
+  left: 421px;
+}
+
+/* .vektor {
+  position: absolute;
+  left: 1200px;
+  background: linear-gradient(
+    225deg,
+    #ffe000 1.28%,
+    #dcde00 14.38%,
+    #c3dd00 26.82%,
+    #b4dc00 38.03%,
+    #afdc00 47.27%,
+    #abd700 55.37%,
+    #a0c900 64.98%,
+    #8db100 75.26%,
+    #739000 86.09%,
+    #586e00 95.23%
+  );
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+} */
