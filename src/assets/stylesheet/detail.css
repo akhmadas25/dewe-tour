@@ -1,0 +1,10 @@
+.detail{
+    background-color: #e4e4e4 !important;
+    margin-top: -470px;
+    min-height: 80vh;
+}
+
+.smallPicture{
+    max-height: 200px;
+    border-radius: 5px;
+}

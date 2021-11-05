@@ -1,21 +1,17 @@
 import "../assets/stylesheet/home.css";
 import { Form, Container } from "react-bootstrap";
-import {
-  NavbarComponent,
-  JumbotronComponent,
-  TourComponent,
-  FooterComponent,
-} from "../components";
+import { NavbarComponent, TourComponent, FooterComponent } from "../components";
 import Guarantee from "../assets/icons/guarantee.png";
 import Love from "../assets/icons/love.png";
 import Travel from "../assets/icons/travel.png";
 import Support from "../assets/icons/support.png";
 
 const Card = () => {
+  
   return (
-    <Container className="text-center">
+    <Container className="mx-auto text-center">
       <div className="row">
-        <div className="col md-2 xs-3">
+        <div className="col md-2 xs-3 ">
           <div className="card mx-3">
             <div className="card-body">
               <img className="icons my-3" src={Guarantee} />
@@ -72,15 +68,17 @@ function Home() {
   return (
     <>
       <NavbarComponent />
-      <Container fluid="true">
-        <JumbotronComponent />
+      <Container fluid="true mx-auto">
+        <div className="header" />
         <Container className="display">
           <h1 className="Bold fw-bold text-light">Explore</h1>
           <h1 className="Light text-light fw-light">
             your amazing city together
           </h1>
           <Form>
-            <label for="search" className="mt-5 text-light">find great place to holiday</label>
+            <label htmlFor="search" className="mt-5 text-light">
+              find great place to holiday
+            </label>
             <input type="text" id="search" className="Search" />
             <div className="d-flex flex-row-reverse">
               <button
@@ -94,9 +92,9 @@ function Home() {
           <Card />
         </Container>
         <h1 className="text-center mt-3">Group Tour</h1>
-        <Container className="d-flex">
+        <div className="container mx-auto">
           <TourComponent />
-        </Container>
+        </div>
       </Container>
       <FooterComponent />
     </>

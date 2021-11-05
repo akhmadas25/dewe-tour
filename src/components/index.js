@@ -1,6 +1,15 @@
-import NavbarComponent from './NavbarComponent';
-import JumbotronComponent from './JumbotronComponent';
-import TourComponent from './TourComponent';
-import FooterComponent from './FooterComponent';
+import NavbarComponent from "./NavbarComponent";
+import TourComponent from "./TourComponent";
+import FooterComponent from "./FooterComponent";
+import InvoiceComponent from "./InvoiceComponent";
+import CountComponent from "./CountComponent";
+import PrivateRoute from "./PrivateRoute";
 
-export {NavbarComponent, JumbotronComponent, TourComponent, FooterComponent}
+export {
+  NavbarComponent,
+  TourComponent,
+  InvoiceComponent,
+  FooterComponent,
+  CountComponent,
+  PrivateRoute,
+};

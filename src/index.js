@@ -3,12 +3,14 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Routes from "./routes";
-import {API_URL} from '../src/utils/constants';
-import axios from 'axios'
+import { UserContextProvider } from "../src/context/userContext";
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Routes />
-  </BrowserRouter>,
+  <UserContextProvider>
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
+  </UserContextProvider>,
+
   document.getElementById("root")
 );
