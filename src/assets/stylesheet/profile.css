@@ -1,0 +1,25 @@
+.profile {
+  background-color: #e4e4e4 !important;
+  margin-top: -470px;
+  min-height: 90vh;
+}
+
+.cardProfile {
+  width: 90vh;
+  height: 60vh;
+}
+
+.imageprofile {
+  height: 300px;
+  border-radius: 5px;
+}
+
+.invoice {
+  height: 500px;
+}
+
+.aprovement {
+  width: 90vw; /* Occupy the 90% of the screen width */
+  max-width: 90vw;
+  height: 90vh;
+}

@@ -1,6 +1,5 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-
 import axios from "axios";
 import { API_URL } from "../utils/constants";
 import numberWithCommas from "../utils/utils";
@@ -24,16 +23,20 @@ export default class TourComponent extends React.Component {
 
   render() {
     const { trips } = this.state;
+    console.log(trips);
     return (
-      <Container className="text-center">
+      <Container>
         <div className="row">
           {trips &&
             trips.map((trip) => (
-              <div className="col md-2 xs-3">
+              <div className="col md-2 mx-auto">
                 <div className="card tour">
                   <div className="card-body py-0 text-center">
                     <img
                       className="thumbnail my-3"
+                      onClick={(props) =>
+                        (window.location.href = "/trip/" + trip.id)
+                      }
                       src={"/images/" + trip.picture.picture1}
                     />
                     <h5 className="card-title">{trip.name}</h5>
