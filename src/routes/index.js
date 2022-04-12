@@ -8,29 +8,22 @@ import Index from "../admin/Index";
 import ListTransaction from "../admin/ListTransaction";
 import AddTrip from "../admin/AddTrip";
 import Chart from "../pages/Chart";
-import { PrivateRoute } from "../components";
+import PageNotFound from "../components/PageNotFound";
+import { PrivateRoute, AdminRoute } from "../components";
 import { UserContext } from "../context/userContext";
 import { API, setAuthToken } from "../config/api";
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 const Routes = () => {
   let history = useHistory();
   const [state, dispatch] = useContext(UserContext);
   console.clear();
-  useEffect(() => {
-    if (localStorage.token) {
-      setAuthToken(localStorage.token);
-    }
 
-    // // Redirect Auth
-    // if (!state.isLogin) {
-    //   history.push("/");
-    // } else {
-    //   if (state.user.role === "admin") {
-    //     history.push("/admin/list-transaction");
-    //   } else if (state.user.role === "user") {
-    //     history.push("/");
-    //   }
-    // }
+  useEffect(() => {
+    console.log(state);
   }, [state]);
 
   const checkUser = async () => {
@@ -42,41 +35,57 @@ const Routes = () => {
         return dispatch({
           type: "AUTH_ERROR",
         });
-      } 
-      console.log(response);
+      }
+
       // Get user data
       let payload = response.data.data;
-      console.log(payload);
+
       // Get token from local storage
       payload.token = localStorage.token;
-
-      // Send data to useContext
-      dispatch({
-        type: "USER_SUCCESS",
-        payload,
-      });
+      if (payload.role === "admin") {
+        dispatch({
+          type: "ADMIN_SUCCESS",
+          payload,
+        });
+      } else {
+        dispatch({
+          type: "USER_SUCCESS",
+          payload,
+        });
+      }
     } catch (error) {
       console.log(error);
+      dispatch({
+        type: "AUTH_ERROR",
+      });
     }
   };
-  console.log(state);
 
   useEffect(() => {
     checkUser();
   }, []);
+
+  if (state.isLoading) {
+    return (
+      <>
+        <p>loading</p>
+      </>
+    );
+  }
   return (
     <Switch>
       <Route path="/" exact component={Home} />
+      <Route path="/404" exact component={PageNotFound} />
       <PrivateRoute path="/profile" exact component={Profile} />
-      <Route path="/chart" exact component={Chart} />
+      <PrivateRoute path="/chart" exact component={Chart} />
       <Route path="/trip/:id" exact component={DetailTrip} />
-      <PrivateRoute path="/admin" exact component={Index} />
-      <PrivateRoute
+      <AdminRoute path="/admin" exact component={Index} />
+      <AdminRoute
         path="/admin/list-transaction"
         exact
         component={ListTransaction}
       />
-      <PrivateRoute path="/admin/add-trip" exact component={AddTrip} />
+      <AdminRoute path="/admin/add-trip" exact component={AddTrip} />
     </Switch>
   );
 };

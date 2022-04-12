@@ -1,16 +1,17 @@
 .profile {
   background-color: #e4e4e4 !important;
   margin-top: -470px;
-  min-height: 90vh;
+  min-height: 75vh;
 }
 
 .cardProfile {
-  width: 90vh;
-  height: 60vh;
+  width: 100vh;
+  min-height: 60vh;
+  height: auto;
 }
 
 .imageprofile {
-  height: 300px;
+  width: 200px;
   border-radius: 5px;
 }
 
@@ -19,7 +20,7 @@
 }
 
 .aprovement {
-  width: 90vw; /* Occupy the 90% of the screen width */
+  width: 90vw; 
   max-width: 90vw;
   height: 90vh;
 }

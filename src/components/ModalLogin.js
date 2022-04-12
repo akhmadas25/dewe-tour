@@ -1,15 +1,15 @@
-import { React, useContext, useState } from "react";
+import { React, useContext, useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import palm from "../assets/palm.png";
 import hibiscus from "../assets/hibiscus.png";
 import { API } from "../config/api";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../context/userContext";
+import swal from "sweetalert";
 
 function ModalLogin() {
   let history = useHistory();
   const [Login, setLogin] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
   const handleShowLogin = () => setLogin(true);
   const handleCloseLogin = () => setLogin(false);
   const [state, dispatch] = useContext(UserContext);
@@ -47,17 +47,31 @@ function ModalLogin() {
           payload: response.data.data,
         });
       }
-        // Status check
+
+      // Status check
       if (response.data.data.role === "admin") {
-        history.push("/admin/list-transaction");
+        dispatch({
+          type: "ADMIN_SUCCESS",
+          payload: response.data.data,
+        });
+        // history.push("/admin/list-transaction");
+        window.location = "/admin/list-transaction"
       } else {
-        history.push("/");
+        // history.push("/");
+        window.location = "/"
       }
     } catch (error) {
       console.log(error);
+      swal({
+        title: "incorrect",
+        text: "email or password doesn't match",
+        icon: "warning",
+      });
     }
   };
-  
+
+  useEffect(() => {}, [state]);
+
   return (
     <>
       <div>

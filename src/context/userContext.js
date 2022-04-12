@@ -1,8 +1,10 @@
 import { createContext, useReducer } from "react";
+import { Redirect } from "react-router";
 
 export const UserContext = createContext();
 
 const initialState = {
+  isLoading: true,
   isLogin: false,
   user: {},
 };
@@ -13,17 +15,21 @@ const reducer = (state, action) => {
   switch (type) {
     case "USER_SUCCESS":
       return {
+        isLoading: false,
         isLogin: true,
+        isAdmin: false,
         user: payload,
       };
     case "LOGIN_SUCCESS":
       localStorage.setItem("token", payload.token);
       return {
+        isLoading: false,
         isLogin: true,
         user: payload,
       };
     case "ADMIN_SUCCESS":
       return {
+        isLoading: false,
         isLogin: true,
         isAdmin: true,
         user: payload,
@@ -32,9 +38,11 @@ const reducer = (state, action) => {
     case "LOGOUT":
       localStorage.removeItem("token");
       return {
+        isLoading: false,
         isLogin: false,
         user: {},
       };
+
     default:
       throw new Error();
   }
